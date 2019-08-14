@@ -1,19 +1,21 @@
 import React from 'react';
 
-import { Container, Title } from './styles';
-
+import { Container, Form, SubmitButton } from './styles';
+import { FaGithubAlt, FaPlus } from 'react-icons/fa';
 export default function Main() {
   return (
     <Container>
-      <Title error>
-        Main
-        <small>123123</small>
-      </Title>
+      <h1>
+        <FaGithubAlt className="gh_icon" />
+        Repositories
+      </h1>
 
-      <Title>
-        Title withou error
-        <small>123123</small>
-      </Title>
+      <Form onSubmit={() => {}}>
+        <input type="text" placeholder="Add Repository" />
+        <SubmitButton>
+          <FaPlus color="#fff" size={14} />
+        </SubmitButton>
+      </Form>
     </Container>
   );
 }
