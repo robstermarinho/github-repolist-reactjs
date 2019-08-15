@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+`;
 
 export const Title = styled.h1`
   font-size: 24px;
@@ -9,6 +18,7 @@ export const Title = styled.h1`
     font-size: 12px;
   }
 `;
+
 export const Container = styled.div`
   max-width: 700px;
   background: #fff;
@@ -26,6 +36,7 @@ export const Container = styled.div`
 
   .gh_icon {
     margin-right: 10px;
+    animation: ${rotate} 3s linear infinite;
   }
 `;
 
@@ -41,11 +52,13 @@ export const Form = styled.form`
     font-size: 15px;
   }
 `;
-export const SubmitButton = styled.button.attrs({
+
+export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
-})`
+  disabled: props.loading,
+}))`
   flex: 1;
-  background: #7159c1;
+  background: #ff9c08;
   border: 0;
   padding: 0 15px;
   margin-left: 10px;
@@ -55,4 +68,39 @@ export const SubmitButton = styled.button.attrs({
   justify-content: center;
   flex-direction: row;
   align-items: center;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  ${props =>
+    props.loading &&
+    css`
+      svg {
+        animation: ${rotate} 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      }
+    `}
+`;
+
+export const List = styled.ul`
+  list-style-type: none;
+  margin-top: 30px;
+
+  li {
+    color: #444;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    & + li {
+      border-top: 1px solid #eee;
+    }
+
+    a {
+      color: #ff9c08;
+      text-decoration: none;
+    }
+  }
 `;
