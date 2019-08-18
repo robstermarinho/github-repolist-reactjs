@@ -45,17 +45,26 @@ export const Form = styled.form`
   display: flex;
   flex-direction: row;
   input {
-    flex: 10;
-    border: 1px solid #eee;
+    flex: 1;
+    border: 1px solid ${props => (props.error ? '#ff6b6b' : '#eee')};
     padding: 10px 15px;
     border-radius: 4px;
-    font-size: 15px;
+    font-size: 16px;
+    transition: border 0.25s ease-out;
   }
+`;
+
+export const ErrorMsg = styled.p`
+  width: 100%;
+  background: #ff9999;
+  margin: 10px 0 5px 0;
+  padding: 15px;
+  color: #ad4040;
+  border-radius: 4px;
 `;
 
 export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
-  disabled: props.loading,
 }))`
   flex: 1;
   background: #ff9c08;
