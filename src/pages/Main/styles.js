@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const rotate = keyframes`
   from {
@@ -66,7 +66,6 @@ export const ErrorMsg = styled.p`
 export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
 }))`
-  flex: 1;
   background: #ff9c08;
   border: 0;
   padding: 0 15px;
@@ -82,14 +81,6 @@ export const SubmitButton = styled.button.attrs(props => ({
     cursor: not-allowed;
     opacity: 0.6;
   }
-
-  ${props =>
-    props.loading &&
-    css`
-      svg {
-        animation: ${rotate} 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-      }
-    `}
 `;
 
 export const List = styled.ul`
@@ -110,6 +101,21 @@ export const List = styled.ul`
     a {
       color: #ff9c08;
       text-decoration: none;
+      border: 1px solid #ff9c08;
+      padding: 6px;
+      font-size: 12px;
+      border-radius: 4px;
+      margin-left: 5px;
+    }
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #ebf1ed;
+      margin-right: 15px;
+      &:hover {
+        opacity: 0.6;
+      }
     }
   }
 `;

@@ -36,7 +36,7 @@ export default class Main extends Component {
     e.preventDefault();
     this.setState({ loading: true });
 
-    const { newRepo, repositories, errorMsg } = this.state;
+    const { newRepo, repositories } = this.state;
     let msg;
     try {
       if (newRepo === '') {
@@ -56,6 +56,7 @@ export default class Main extends Component {
       const response = await api.get(`/repos/${newRepo}`);
       const data = {
         name: response.data.full_name,
+        avatar: response.data.organization.avatar_url,
       };
       this.setState({
         repositories: [...repositories, data],
@@ -73,6 +74,20 @@ export default class Main extends Component {
       this.setState({ loading: false });
     }
   };
+
+  handleDelete = repository => {
+    const { repositories } = this.state;
+
+    const allRepositories = [...repositories];
+
+    const index = allRepositories.findIndex(r => r.name === repository);
+
+    if (index !== -1) {
+      allRepositories.splice(index, 1);
+      this.setState({ repositories: allRepositories });
+    }
+  };
+
   render() {
     const { newRepo, repositories, loading, error, errorMsg } = this.state;
     return (
@@ -100,10 +115,16 @@ export default class Main extends Component {
         <List>
           {repositories.map(rep => (
             <li key={rep.name}>
+              <img src={rep.avatar} alt={rep.name} />
               <span>{rep.name}</span>
-              <Link to={`/repository/${encodeURIComponent(rep.name)}`}>
-                Details
-              </Link>
+              <div>
+                <Link to={`/repository/${encodeURIComponent(rep.name)}`}>
+                  Details
+                </Link>
+                <a href="#" onClick={() => this.handleDelete(rep.name)}>
+                  Remove
+                </a>
+              </div>
             </li>
           ))}
         </List>

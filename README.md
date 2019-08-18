@@ -19,3 +19,7 @@ yarn dev
 ```
 
 ##### 3) Open the url `http://localhost:3000/`
+
+### Live Preview
+
+[https://objective-newton-7f4fda.netlify.com/](https://objective-newton-7f4fda.netlify.com/)
