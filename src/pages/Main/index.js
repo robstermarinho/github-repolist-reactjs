@@ -100,7 +100,7 @@ export default class Main extends Component {
         <Form onSubmit={this.handleSubmit} error={error} disabled={loading}>
           <input
             type="text"
-            placeholder="Add Repository"
+            placeholder="Add Repository (e.g. facebook/react)"
             value={newRepo}
             onChange={this.handleInputChange}
           />
