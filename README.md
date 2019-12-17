@@ -15,7 +15,7 @@ yarn
 ##### 2) Run the server
 
 ```
-yarn dev
+yarn start
 ```
 
 ##### 3) Open the url `http://localhost:3000/`
